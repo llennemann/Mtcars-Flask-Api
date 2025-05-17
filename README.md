@@ -1,16 +1,18 @@
 # Mtcars-Flask-Api
-STATS 418 - Homework creating a flask API, creating an image and deploying with google cloud run
+This repository includes a basic flask API which has been deployed with Google Cloud Run at the following [link](https://mtcars-lennemann-26302743692.europe-west1.run.app). You can make a request to the API to predict miles per gallon (mpg) based on the numerical features in the dataset. Information about this dataset and its features can be found [here](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars). 
 
-in this repo: dockerfile, requirements file with the needed python packages, docker compose file, server.py with the Flask app, linmodel.py with the functions to 
-fit the linear regression model, mtcars which is the dataset
+To call the deployed model, you can make a POST request to the API. One example curl command is:
+`curl -H "Content-Type: application/json" -X POST -d '{"cyl":4,"disp":140.0,"hp":95,"drat":3.70,"wt":2.800,"qsec":19.00,"vs":1,"am":1,"gear":5,"carb":2}' https://mtcars-lennemann-26302743692.europe-west1.run.app/predict`.
 
-created a flask API which builds a linear regression model to predict mpg based on all the other numeric variables. can predict mpg based on test data. this API
-is deployed with Google Cloud Run. 
+The payload specifies the features that should be passed in so that the API can predict a mpg value for the test datapoint in a dictionary format. 
 
-to download the Docker image, use the following command: `docker compose up -d`
+To break it down further, my process involved:
+- creating functions to fit a linear regression model on the `mtcars` dataset and predict using that model (`linmodel.py`)
+- writing a Flask app (`server.py`)
+- building a Docker image and pushing to DockerHub using `docker-compose.yml` and the Dockerfile
+- deploying the API to Google Cloud Run
 
-The API is deployed at the following link: https://mtcars-lennemann-26302743692.europe-west1.run.app where you can see the coefficients for the model. 
+This process can be replicated by cloning the repo. To set up the Docker environment, use the following command: `docker compose up -d`. 
 
-You can also make a POST request to the API with the following curl command, i.e.: 
+Run the Flask app locally with the following command: `python server.py`.
 
-curl -H "Content-Type: application/json" -X POST -d '{"cyl":4,"disp":140.0,"hp":95,"drat":3.70,"wt":2.800,"qsec":19.00,"vs":1,"am":1,"gear":5,"carb":2}' https://mtcars-lennemann-26302743692.europe-west1.run.app/predict 
