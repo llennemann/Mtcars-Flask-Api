@@ -22,7 +22,6 @@ To break it down further, my process involved:
 - deploying the API to Google Cloud Run
 
 ## How to Run Locally
-This process can be replicated by cloning the repository. Then, install dependencies by running `pip install -r requirements.txt`. To set up the Docker environment, use the following command: `docker compose up -d`. 
+This process can be replicated by cloning the repository. To set up the Docker environment, use the following command: `docker compose up -d`. 
 
-Run the Flask app locally with the following command: `python server.py`.
-
+Run the Flask app locally with the following command: `python server.py`. Then, navigate to the specified URL and view the model coefficients!
